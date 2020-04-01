@@ -34,7 +34,9 @@ var questions = [
       correctAnswer: "Square brackets"
     }
   ];
+  //targeting div with Start button
   var card = $("#questions")
+  //setting 120 seconds on timer
   var timeRemaining = 120;
   var timer
   //creating game object
@@ -54,6 +56,7 @@ var questions = [
         this.checkAnswers()
       }
     }, 
+    //setting up first question
     questionForm: function () {
       timer = setInterval(this.countdown.bind(this), 1000)
       card.html("<h2>" + questions[this.currentQuestion].question + "</h2>")
@@ -61,11 +64,11 @@ var questions = [
         card.append("<button class = 'answer-button' id = 'button' data-name='" + questions[this.currentQuestion].answers[i] + "'>" + questions[this.currentQuestion].answers[i] + "</button>")
       }
     },
+    //setting up next question
     nextQuestion: function () {
       this.currentQuestion ++
       this.questionForm.bind(this)()
     },
-    
     stop: function () {
       clearInterval(window.timer)
       if (this.currentQuestion === questions.length - 1) {
@@ -78,6 +81,7 @@ var questions = [
     results: function () {
       clearInterval (window.timer)
       $("#timeRemain").text(this.timeRemaining)
+      //showing correct, incorrect and unanswered questions
       card.append("<h3>Correct Answers:  " + this.correct + "</h3>")
       card.append("<h3>Incorrect Answers:  " + this.incorrect + "</h3>")
       card.append("<h3>Unanswered:  " + (questions.length - (this.incorrect + this.correct)) + "</h3>")
@@ -103,7 +107,6 @@ var questions = [
         setTimeout(this.nextQuestion.bind(this), 1000)
       }
     },
-
     answeredIncorrectly: function () {
       this.incorrect++
       clearInterval(window.timer)
@@ -116,7 +119,6 @@ var questions = [
         setTimeout(this.nextQuestion.bind(this), 1000)
       }
     },
-
     reset: function () {
       this.currentQuestion = 0;
       this.correct = 0;
