@@ -96,6 +96,7 @@ var questions = [
       }
       console.log(questions[this.currentQuestion].correctAnswer)
     },
+    //function for correct answers
     answeredCorrectly: function () {
       this.correct++
       clearInterval(window.timer)
@@ -107,6 +108,7 @@ var questions = [
         setTimeout(this.nextQuestion.bind(this), 1000)
       }
     },
+    //attempt to decrement timer if wrong answer given
     answeredIncorrectly: function () {
       this.incorrect++
       clearInterval(window.timer)
